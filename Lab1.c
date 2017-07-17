@@ -1,10 +1,6 @@
-/* Objective:
-
-    Input:
-
-    output:
-
-    */
+/* Purpose : To Code and document the summation, factorial, fibonacci, GCD, and power functions using NON-RECURSIVE ITERATION only.
+               
+   Author : Vithusanan Mathiaparanam  */
 
 #include <stdio.h>
 
