@@ -1,0 +1,93 @@
+
+/* Pupose of this program is to, given n, compute an n × n magic square in an arrangement of the numbers 1, 2, . . . , n2 such that the sum of the entries in any row, column or diagonal is the same. 
+
+    Author: Vithusanan Mathiaparanam
+    Student Num: 104722017 
+    
+    Rules fto create Magic square 
+        1. Place the first number in the 1st row's middle column 
+        2. Go 1 step right
+        3. go 1 step up
+        4. Place the next number 
+        5. if we go 1 step up from the first row, we will end up on the last row. Column will remain the same
+        6. if we are going one step right from the last column, we will end up on the first column. Row will remian the same
+        7. if the position is already filled, then we will reverse to the original position, and go one step down from the original position*/
+
+#include <stdio.h>
+
+//Function declaration
+void create_magic_square(int n, char magic_square[n][n]);
+void print_magic_square(int n, char magic_square[n][n]);
+
+int main(void)
+{
+    int userVal;
+
+    printf("This program creates a magic square of a specified size.\n");
+    printf("The size must be an odd number between 1 and 99.\n");
+    printf("Enter size of magic square: \n");
+    scanf("%d", &userVal); 
+
+    // Checks for the conditon 
+    if ((userVal < 1) || (userVal > 99) || (userVal % 2 == 0)){
+        printf("The number does not satisfy the condition. \n");
+        return 0;
+    }
+
+    char magic_square[userVal][userVal];
+
+    // Calls the function
+    create_magic_square(userVal, magic_square);
+    print_magic_square(userVal, magic_square);
+    printf("\n");
+
+    return 0;
+}
+
+void create_magic_square(int n, char magic_square[n][n])
+{
+    int row, col, prevRow, prevCol, i; // Input declaration
+
+    for (row = 0; row < n; row++)
+        for (col = 0; col < n; col++)
+            magic_square[row][col] = 0;
+
+    row = 0;
+    col = n / 2; // Starting column - Middle column
+
+        for (i = 0; i < n * n; i++){ // The number 1,2,3,..., n^2 is iterated through the loop
+    
+            magic_square[row][col] = i + 1;     // Placing one in First row, middle column to begin with
+
+            prevRow = row;
+            prevCol = col;
+
+                if ((row - 1) < 0){
+                    row = n - 1;
+                }
+                else{
+                    row--;
+                }
+                if ((col + 1) > (n - 1)){
+                    col = 0;
+                }
+                else{
+                    col++;
+                }
+
+                if (magic_square[row][col] != 0){ // If the box already has a number
+                    row = prevRow + 1;
+                    col = prevCol;
+                }
+        }
+}
+
+void print_magic_square(int n, char magic_square[n][n]){
+    int row, col;
+    for (row = 0; row < n; row++){
+        for (col = 0; col < n; col++){
+            printf("%4d", magic_square[row][col]); // Prints with 4 spaces to arrage in proper rows and column 
+        }
+        printf("\n");
+    }
+}
