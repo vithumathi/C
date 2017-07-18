@@ -1,10 +1,8 @@
 
-/* Name: Assignment 4 Problem 1
-
-    The purpose of the program is to perform a characterCount & wordcount 
+/* Objective: The purpose of the program is to perform a characterCount & wordcount for a used input sentence
 
     Author: Vithusanan Mathiaparanam
-    Student Num: 104722017 */
+*/
 
 
 #include <stdio.h>
